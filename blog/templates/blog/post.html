@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+<div class="postcard-header">
+    <div class="postcard-title">
+        <h1>{{ post.title }}</h1>
+    </div>
+
+    <div class="postcard-intro">
+        By
+        <a href="{% url 'profile' username=post.owner.username %}">
+            {{ post.owner.get_full_name }}
+        </a>
+        &middot; 
+        {{ post.last_published_at|timesince }}
+        ago
+    </div>
+</div>
+
+{{ post.body|richtext }}
+
+{% endblock %}
